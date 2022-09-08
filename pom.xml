@@ -40,21 +40,32 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+<dependency>
+    <groupId>org.sonarsource.scanner.maven</groupId>
+    <artifactId>sonar-maven-plugin</artifactId>
+    <version>3.9.1.2184</version>
+</dependency>
+
 	</dependencies>
+
 	<build>
-		<finalName>hello-world-rest-api</finalName>
-		<plugins>
-			<plugin>
+			<finalName>hello-world-rest-api</finalName>
+
+    <pluginManagement>
+        <plugins>
+		<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-<!-- 		<plugin>
-				<groupId>com.microsoft.azure</groupId>
-				<artifactId>azure-webapp-maven-plugin</artifactId>
-				<version>1.7.0</version>
-			</plugin>-->
-		</plugins>
-	</build>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.4.0.905</version>
+            </plugin>
+        </plugins>
+    </pluginManagement>
+</build>
 	<repositories>
 		<repository>
 			<id>spring-snapshots</id>
