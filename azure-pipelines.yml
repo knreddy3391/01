@@ -9,24 +9,23 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: SonarCloudPrepare@1
+- task: Maven@3
   inputs:
-    SonarCloud: 'sonar'
-    organization: 'knreddy3391'
-    scannerMode: 'Other'
-# - task: Maven@3
-#   inputs:
-#     mavenPomFile: 'pom.xml'
-#     goals: 'clean package'
-#     publishJUnitResults: true
-#     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-#     javaHomeOption: 'JDKVersion'
-#     mavenVersionOption: 'Default'
-#     mavenAuthenticateFeed: false
-#     effectivePomSkip: false
-#     sonarQubeRunAnalysis: true
-#     sqMavenPluginVersionChoice: 'pom'
-- script: java -version
-
-- task: SonarCloudAnalyze@1
+    mavenPomFile: 'pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+- task: CopyFiles@2
+  inputs:
+    Contents: '**/*.jar'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    CleanTargetFolder: true
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'Helloworld_01'
+    publishLocation: 'Container'
