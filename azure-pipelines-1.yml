@@ -37,3 +37,9 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'Helloworld'
     publishLocation: 'Container'
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'current'
+    downloadType: 'specific'
+    itemPattern: '**.jar'
+    downloadPath: '$(System.ArtifactsDirectory)'
