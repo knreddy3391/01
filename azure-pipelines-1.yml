@@ -28,12 +28,7 @@ steps:
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
-- task: SonarCloudAnalyze@1
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'helloworld'
-    organization: 'ed91b354ba50619ad56003f6247bba647c1a2657'
-    scannerMode: 'Other'
+
 - task: CopyFiles@2
   inputs:
     Contents: '**/*.jar'
